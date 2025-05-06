@@ -43,7 +43,6 @@ const TrendingSection: React.FC<TrendingSectionProps> = ({ onPackageSelect }) =>
     fetchTrending();
   }, []);
   
-  // Filter packages by category if a category is selected
   const filteredPackages = selectedCategory
     ? trendingPackages.filter(pkg => pkg.category === selectedCategory)
     : trendingPackages;
@@ -55,10 +54,11 @@ const TrendingSection: React.FC<TrendingSectionProps> = ({ onPackageSelect }) =>
           <TrendingUp className="text-[#58A6FF] mr-2" size={20} />
           <h2 className="text-xl text-[#C9D1D9] font-bold">Trending Packages</h2>
         </div>
-        
-        <div className="flex items-center">
-          <Filter className="text-[#8B949E] mr-2" size={16} />
-          <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+
+        {/* Scrollable category buttons */}
+        <div className="flex items-center gap-2 overflow-x-auto max-w-full scrollbar-hide">
+          <Filter className="text-[#8B949E] flex-shrink-0" size={16} />
+          <div className="flex gap-2 flex-nowrap">
             <button 
               className={`px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap
                 ${selectedCategory === null 
